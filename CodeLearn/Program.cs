@@ -79,6 +79,14 @@ namespace CodeLearn
             else return usc(b, a % b);
         }
 
+        private static bool strengthCompare(int tayTraiA, int tayPhaiA, int tayTraiB, int tayPhaiB)
+        {
+            if ((tayTraiA == tayTraiB && tayPhaiA == tayPhaiB) || (tayTraiA == tayPhaiB && tayPhaiA == tayTraiB))
+                return true;
+            else
+                return false;
+        }
+
         private static bool strongPassword(string pwd)
         {
             // Chữ cái viết thường: a-z (97 - 122)
