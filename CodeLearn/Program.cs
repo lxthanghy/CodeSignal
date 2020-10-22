@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CodeLearn
@@ -72,11 +73,56 @@ namespace CodeLearn
             }
         }
 
+        private static int usc(int a, int b)
+        {
+            if (a % b == 0) return b;
+            else return usc(b, a % b);
+        }
+
+        private static bool strongPassword(string pwd)
+        {
+            // Chữ cái viết thường: a-z (97 - 122)
+            // Chữ cái viết HOA: A-Z (65 - 90)
+            // Chữ số: 0-9 (48 - 57)
+            // Các ký tự đặc biệt: !@#$%ˆ&*()[]{},./<>?
+            if (pwd.Length >= 8 && pwd.Length <= 30)
+            {
+                string db = "!@#$%ˆ&*()[]{},./<>?";
+                int lowercase = 0;
+                int uppercase = 0;
+                int number = 0;
+                int specialcharacter = 0;
+
+                for (int i = 0; i < pwd.Length; ++i)
+                {
+                    int c = pwd[i];
+                    if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90) || (c >= 48 && c <= 57) || (db.Contains(pwd[i])))
+                    {
+                        if (c >= 97 && c <= 122)
+                            if (lowercase == 0)
+                                lowercase += 1;
+                        if (c >= 65 && c <= 90)
+                            if (uppercase == 0)
+                                uppercase += 1;
+                        if (c >= 48 && c <= 57)
+                            if (number == 0)
+                                number += 1;
+                        if (db.Contains(pwd[i]))
+                            if (specialcharacter == 0)
+                                specialcharacter += 1;
+                        if (lowercase + uppercase + number + specialcharacter >= 3)
+                            return true;
+                    }
+                    else return false;
+                }
+                return lowercase + uppercase + specialcharacter >= 3;
+            }
+            else
+                return false;
+        }
+
         private static void Main(string[] args)
         {
-            Console.Write("n = ");
-            int n = int.Parse(Console.ReadLine());
-            DrawNumberTriangle2(n);
             Console.ReadKey();
         }
     }
