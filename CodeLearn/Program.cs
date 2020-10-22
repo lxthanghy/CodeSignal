@@ -131,6 +131,19 @@ namespace CodeLearn
 
         private static int[][] deleteRowsColumns(int[][] inputMatrix, int[] deleteRows, int[] deleteColumns)
         {
+            //int[] deleteRows = new int[] { 4, 6, 7 };
+            //int[] deleteColumns = new int[] { 1, 2, 3, 4 };
+            //int[][] inputMatrix = new int[][]
+            //{
+            //    new int[]{ 1, 2, 5, 6, 7, 8, 9 },
+            //    new int[]{ 3, 4, 5, 6, 7, 8, 9 },
+            //    new int[]{ 2, 5, 6, 7, 8, 9, 4 },
+            //    new int[]{ 7, 4, 5, 6, 8, 3, 1 },
+            //    new int[]{ 5, 8, 9, 2, 6, 5, 7 },
+            //    new int[]{ 8, 5, 6, 1, 2, 3, 6 },
+            //    new int[]{ 5, 2, 6, 8, 7, 2, 6 },
+            //};
+            //deleteRowsColumns(inputMatrix, deleteRows, deleteColumns);
             int n = 0;
             int lengthRows = inputMatrix.Length - deleteRows.Length;
             int lengthCols = inputMatrix[0].Length - deleteColumns.Length;
@@ -154,21 +167,67 @@ namespace CodeLearn
             return res;
         }
 
+        private static int[] botBanking_(int[] accounts, string[] requests)
+        {
+            //int[] accounts = new int[] { 80, 200, 300, 10, 60 };
+            //string[] requests = new string[]
+            //{
+            //    "deposit 3 400",
+            //    "transfer 1 2 30",
+            //    "withdraw 4 50"
+            //};
+            //botBanking_(accounts, requests);
+            int[] res;
+            int a, b, money;
+            int length = accounts.Length;
+            for (int i = 0; i < requests.Length; ++i)
+            {
+                string[] temp = requests[i].Split(' ');
+                switch (temp[0])
+                {
+                    case "transfer":
+                        a = int.Parse(temp[1]) - 1;
+                        b = int.Parse(temp[2]) - 1;
+                        money = int.Parse(temp[3]);
+                        if (a < length && b < length)
+                        {
+                            accounts[a] -= money;
+                            if (accounts[a] < 0)
+                                return res = new int[1] { -(i + 1) };
+                            accounts[b] += money;
+                        }
+                        else
+                            return res = new int[1] { -(i + 1) };
+                        break;
+
+                    case "deposit":
+                        a = int.Parse(temp[1]) - 1;
+                        money = int.Parse(temp[2]);
+                        if (a < length)
+                            accounts[a] += money;
+                        else
+                            return res = new int[1] { -(i + 1) };
+                        break;
+
+                    case "withdraw":
+                        a = int.Parse(temp[1]) - 1;
+                        money = int.Parse(temp[2]);
+                        if (a < length)
+                        {
+                            accounts[a] -= money;
+                            if (accounts[a] < 0)
+                                return res = new int[1] { -(i + 1) };
+                        }
+                        else
+                            return res = new int[1] { -(i + 1) };
+                        break;
+                }
+            }
+            return accounts;
+        }
+
         private static void Main(string[] args)
         {
-            int[] deleteRows = new int[] { 4, 6, 7 };
-            int[] deleteColumns = new int[] { 1, 2, 3, 4 };
-            int[][] inputMatrix = new int[][]
-            {
-                new int[]{ 1, 2, 5, 6, 7, 8, 9 },
-                new int[]{ 3, 4, 5, 6, 7, 8, 9 },
-                new int[]{ 2, 5, 6, 7, 8, 9, 4 },
-                new int[]{ 7, 4, 5, 6, 8, 3, 1 },
-                new int[]{ 5, 8, 9, 2, 6, 5, 7 },
-                new int[]{ 8, 5, 6, 1, 2, 3, 6 },
-                new int[]{ 5, 2, 6, 8, 7, 2, 6 },
-            };
-            deleteRowsColumns(inputMatrix, deleteRows, deleteColumns);
             Console.ReadKey();
         }
     }
