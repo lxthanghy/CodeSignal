@@ -129,8 +129,46 @@ namespace CodeLearn
                 return false;
         }
 
+        private static int[][] deleteRowsColumns(int[][] inputMatrix, int[] deleteRows, int[] deleteColumns)
+        {
+            int n = 0;
+            int lengthRows = inputMatrix.Length - deleteRows.Length;
+            int lengthCols = inputMatrix[0].Length - deleteColumns.Length;
+            int[][] res = new int[lengthRows][];
+            for (int i = 0; i < inputMatrix.Length; ++i)
+            {
+                if (!deleteRows.Contains(i + 1))
+                {
+                    int m = 0;
+                    res[n] = new int[lengthCols];
+                    for (int j = 0; j < inputMatrix[i].Length; ++j)
+                    {
+                        if (!deleteColumns.Contains(j + 1))
+                        {
+                            res[n][m++] = inputMatrix[i][j];
+                        }
+                    }
+                    n++;
+                }
+            }
+            return res;
+        }
+
         private static void Main(string[] args)
         {
+            int[] deleteRows = new int[] { 4, 6, 7 };
+            int[] deleteColumns = new int[] { 1, 2, 3, 4 };
+            int[][] inputMatrix = new int[][]
+            {
+                new int[]{ 1, 2, 5, 6, 7, 8, 9 },
+                new int[]{ 3, 4, 5, 6, 7, 8, 9 },
+                new int[]{ 2, 5, 6, 7, 8, 9, 4 },
+                new int[]{ 7, 4, 5, 6, 8, 3, 1 },
+                new int[]{ 5, 8, 9, 2, 6, 5, 7 },
+                new int[]{ 8, 5, 6, 1, 2, 3, 6 },
+                new int[]{ 5, 2, 6, 8, 7, 2, 6 },
+            };
+            deleteRowsColumns(inputMatrix, deleteRows, deleteColumns);
             Console.ReadKey();
         }
     }
