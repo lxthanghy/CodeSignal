@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace CodeLearn
@@ -224,6 +225,49 @@ namespace CodeLearn
                 }
             }
             return accounts;
+        }
+
+        private static int Cau43()
+        {
+            int I = 2, S = 1, F = 1, R = 1;
+            while (I <= 8)
+            {
+                I++; S = F + R; F = R; R = S;
+            }
+            return S;
+        }
+
+        private static void Bai01Fe(int length, string strSource, string strFind)
+        {
+            // ----- HÀM MAIN ---------//
+            //StreamReader sr = File.OpenText(@"E:\bai1.txt");
+            //int length = int.Parse(sr.ReadLine());
+            //string str = sr.ReadLine();
+            //Bai01Fe(length, str, "a");
+            // ----- END MAIN ---------//
+
+            //Đọc file txt
+            StreamWriter sw = File.CreateText(@"E:\bai1_out.txt");
+            strSource = strSource.ToLower();
+            strFind = strFind.ToLower();
+            //Biến lưu vị trí ký tự trong chuỗi nguồn
+            string resIndex = "";
+            //Biến đếm số lượng ký tự khớp
+            int count = 0;
+            //Duyệt từng ký tự trong chuỗi nguồn
+            for (int i = 0; i < length; ++i)
+            {
+                //Nếu khớp thì tăng biến đếm lên 1, và cộng chuỗi vị trí tìm thấy
+                if (strSource[i].ToString().Equals(strFind))
+                {
+                    ++count;
+                    resIndex += i + "\t";
+                }
+            }
+            sw.WriteLine(count);
+            sw.WriteLine(resIndex);
+            sw.Close();
+            Console.WriteLine("Done!");
         }
 
         private static void Main(string[] args)
