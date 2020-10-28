@@ -270,8 +270,36 @@ namespace CodeLearn
             Console.WriteLine("Done!");
         }
 
+        private static int CoinChange(int[] coins, int amount)
+        {
+            //int[] coins = new int[] { 1, 2, 5 };
+            //int amount = 11;
+            //Console.WriteLine(CoinChange(coins, amount));
+            int[] dp = new int[amount + 1];
+            Array.Fill(dp, amount + 1);
+            dp[0] = 0;
+            for (int i = 0; i <= amount; ++i)
+                for (int j = 0; j < coins.Length; ++j)
+                    if (coins[j] <= i)
+                        dp[i] = Math.Min(dp[i], 1 + dp[i - coins[j]]);
+            return dp[amount] > amount ? -1 : dp[amount];
+        }
+
         private static void Main(string[] args)
         {
+            List<Doanthang> dsdt = new List<Doanthang>();
+            for (int i = 1; i <= 5; ++i)
+            {
+                Console.WriteLine("Nhap thong tin doan thang thu {0}", i);
+                Doanthang dt = new Doanthang();
+                dt.Nhap();
+                dsdt.Add(dt);
+            }
+            Dictionary<double, int> dic = new Dictionary<double, int>();
+            for (int i = 0; i < dsdt.Count; ++i)
+            {
+                double dodai = Math.Sqrt(Math.Pow(dsdt[i].dc.oy - dsdt[i].dd.oy, 2) - Math.Pow(dsdt[i].dc.ox - dsdt[i].dd.ox, 2));
+            }
             Console.ReadKey();
         }
     }
