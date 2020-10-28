@@ -295,11 +295,28 @@ namespace CodeLearn
                 dt.Nhap();
                 dsdt.Add(dt);
             }
-            Dictionary<double, int> dic = new Dictionary<double, int>();
-            for (int i = 0; i < dsdt.Count; ++i)
+            foreach (Doanthang dt in dsdt)
+                dt.HienThi();
+            Console.WriteLine();
+            for (int i = 0; i < dsdt.Count - 1; ++i)
             {
-                double dodai = Math.Sqrt(Math.Pow(dsdt[i].dc.oy - dsdt[i].dd.oy, 2) - Math.Pow(dsdt[i].dc.ox - dsdt[i].dd.ox, 2));
+                int min_index = i;
+                for (int j = i + 1; j < dsdt.Count; ++j)
+                {
+                    double m = dsdt[min_index].dd.oy - dsdt[min_index].dd.ox;
+                    double n = dsdt[j].dd.oy - dsdt[j].dd.ox;
+                    if (m > n || (m == n && dsdt[j].dd.oy > dsdt[min_index].dd.oy))
+                        min_index = j;
+                }
+                if (min_index != i)
+                {
+                    Doanthang tmp = dsdt[min_index];
+                    dsdt[min_index] = dsdt[i];
+                    dsdt[i] = tmp;
+                }
             }
+            foreach (Doanthang dt in dsdt)
+                dt.HienThi();
             Console.ReadKey();
         }
     }
