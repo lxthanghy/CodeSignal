@@ -327,6 +327,17 @@ namespace CodeLearn
             return res;
         }
 
+        private static string convertDectoBin(int dec)
+        {
+            string res = "";
+            while (dec != 0)
+            {
+                res = (dec % 2) + "" + res;
+                dec /= 2;
+            }
+            return res;
+        }
+
         private static void Main(string[] args)
         {
             Console.ReadKey();
