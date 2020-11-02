@@ -313,6 +313,7 @@ namespace CodeLearn
 
         private static string UpperCase(string str)
         {
+            //Console.WriteLine(UpperCase("test case"));
             if (string.IsNullOrEmpty(str))
                 return str;
             str = str.Trim();
@@ -328,7 +329,6 @@ namespace CodeLearn
 
         private static void Main(string[] args)
         {
-            Console.WriteLine(UpperCase("test case"));
             Console.ReadKey();
         }
     }
