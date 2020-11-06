@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DeFE4.2\DeFE4.2.csproj" />
+  </ItemGroup>
+
 </Project>

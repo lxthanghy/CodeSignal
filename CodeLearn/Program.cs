@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using DeFE4._2;
 
 namespace CodeLearn
 {
@@ -336,6 +337,20 @@ namespace CodeLearn
                 dec /= 2;
             }
             return res;
+        }
+
+        private static bool KiemTraDoiXung(string str)
+        {
+            int i = 0;
+            int j = str.Length - 1;
+            while (i < j)
+            {
+                if (str[i] != str[j])
+                    return false;
+                ++i;
+                --j;
+            }
+            return true;
         }
 
         private static void Main(string[] args)
