@@ -44,6 +44,46 @@ namespace De01FE
             Detail = Console.ReadLine();
         }
 
+        public string Check()
+        {
+            string kq = "";
+            int danhgia = 0;
+            int danhgia2 = 0;
+            int danhgia3 = 0;
+            bool coChuThuong = false;
+            bool coChuHoa = false;
+            bool coSo = false;
+            if (Pass.Length >= 6)
+                danhgia += 1;
+            char[] pass0 = Pass.ToCharArray();
+            for (int i = 0; i < pass0.Length; i++)
+            {
+                if (coChuHoa == false)
+                    if (Char.IsUpper(pass0[i]))
+                        coChuHoa = true;
+                if (coChuThuong == false)
+                    if (Char.IsLower(pass0[i]))
+                        coChuThuong = true;
+                if (coSo == false)
+                    if (Char.IsNumber(pass0[i]))
+                        coSo = true;
+                if (danhgia3 == 0)
+                    if (Char.IsSymbol(pass0[i]))
+                        danhgia3 += 1;
+            }
+            if (coChuHoa && coChuThuong && coSo)
+                danhgia2 += 1;
+            danhgia += danhgia2 + danhgia3;
+            switch (danhgia)
+            {
+                case 0: kq = "Kem"; break;
+                case 1: kq = "Trung binh"; break;
+                case 2: kq = "Tot"; break;
+                default: kq = "Tot"; break;
+            }
+            return kq;
+        }
+
         public string DanhGia()
         {
             string chuthuong = "abcdefghijklmnopqrstuvwxyz";

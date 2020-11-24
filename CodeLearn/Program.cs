@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using DeFE4._2;
 
@@ -353,8 +354,71 @@ namespace CodeLearn
             return true;
         }
 
+        private static string TimSoLonThuHai(int[] num)
+        {
+            int s1_number = num[0];
+            int s2_number = s1_number;
+            for (int i = 1; i < num.Length; ++i)
+                if (num[i] > s1_number)
+                    s1_number = num[i];
+            for (int i = 1; i < num.Length; ++i)
+                if (num[i] > s2_number && num[i] != s1_number)
+                    s2_number = num[i];
+            if (s1_number == s2_number) return "Mảng không có sô lớn thứ 2 !";
+            return $"Số lớn nhất: {s1_number} | số lớn thứ hai: {s2_number}";
+        }
+
+        private static int TimGiaTriGanTrungBinh(int[] num)
+        {
+            int length = num.Length;
+            int sum = 0;
+            for (int i = 0; i < length; ++i)
+                sum += num[i];
+            double avg = sum * 1.0 / length;
+            int res = num[0];
+            double distance_min = Math.Abs(avg - res);
+            for (int i = 1; i < length; ++i)
+            {
+                double tmp_distance_min = Math.Abs(avg - num[i]);
+                if (tmp_distance_min < distance_min)
+                {
+                    distance_min = tmp_distance_min;
+                    res = num[i];
+                }
+            }
+            return res;
+        }
+
+        private static int SumNumbersLargerAverage(int[] a)
+        {
+            long sum = 0;
+            int ans = 0;
+            foreach (int x in a)
+                sum += x;
+            double avg = sum * 1.0 / a.Length;
+            foreach (int x in a)
+                if (x > avg)
+                    ans += x;
+            return ans != 0 ? ans : -1;
+        }
+
+        private static int Fibonacci(int n)
+        {
+            int F0 = 0;
+            int F1 = 1;
+            int F = F1;
+            for (int i = 2; i <= n; ++i)
+            {
+                F = F0 + F1;
+                F0 = F1;
+                F1 = F;
+            }
+            return F;
+        }
+
         private static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             Console.ReadKey();
         }
     }

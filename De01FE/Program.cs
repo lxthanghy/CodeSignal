@@ -14,7 +14,7 @@ namespace De01FE
             Console.InputEncoding = Encoding.UTF8;
             //Bai01 bai01 = new Bai01();
             //bai01.Nhap();
-            //Console.WriteLine(bai01.DanhGia());
+            //Console.WriteLine(bai01.Check());
             //Bai02 bai02 = new Bai02();
             //bai02.Run();
             Bai03 bai03 = new Bai03();

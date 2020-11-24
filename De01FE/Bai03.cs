@@ -92,7 +92,7 @@ namespace De01FE
             Console.WriteLine("STT\tBien so xe\tMau son\tSo cho ngoi/Tai trong\tLoai xe");
             for (int i = 0; i < dspt.Count; ++i)
             {
-                if (dspt[i] is Xekhach)
+                if (dspt[i].GetType() == typeof(Xekhach))
                     Console.WriteLine("{0}\t{1}\t{2}", i + 1, dspt[i].HienThi(), "Xe Khach");
                 else
                     Console.WriteLine("{0}\t{1}\t{2}", i + 1, dspt[i].HienThi(), "Xe Tai");
