@@ -434,9 +434,36 @@ namespace CodeLearn
             return min_way;
         }
 
+        private static int TimDiemTrungBinhFPT(int[] arr)
+        {
+            // 1 9 6 2 3 5
+            double avg = 0;
+            int length = arr.Length;
+            for (int i = 0; i < length; ++i)
+                avg += arr[i];
+            avg /= 2;
+            int sum_left = 0;
+            int mid = -1;
+            for (int i = 0; i < length; ++i)
+            {
+                sum_left += arr[i];
+                if (sum_left >= avg && i > 0)
+                {
+                    mid = i;
+                    break;
+                }
+            }
+            int sum_right = 0;
+            for (int j = length - 1; j >= mid; --j)
+                sum_right += arr[j];
+            return sum_left == sum_right ? mid : -1;
+        }
+
         private static void Main(string[] args)
         {
+            int[] arr = new int[] { 0, 0, 0, 0, 0 };
             Console.OutputEncoding = Encoding.UTF8;
+            Console.WriteLine(TimDiemTrungBinhFPT(arr));
             Console.ReadKey();
         }
     }
