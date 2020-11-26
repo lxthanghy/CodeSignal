@@ -416,6 +416,24 @@ namespace CodeLearn
             return F;
         }
 
+        private static int MinConvert(int n, int m)
+        {
+            int min_way = 0;
+            if (n == 0 && m > 0) return -1;
+            if (n > m) return n - m;
+            while (n != m)
+            {
+                if (m > n)
+                {
+                    if (m % 2 == 0) m /= 2;
+                    else m += 1;
+                    ++min_way;
+                }
+                else return n - m + min_way;
+            }
+            return min_way;
+        }
+
         private static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
