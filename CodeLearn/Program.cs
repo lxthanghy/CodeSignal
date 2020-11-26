@@ -447,9 +447,14 @@ namespace CodeLearn
             for (int i = 0; i < length; ++i)
             {
                 sum_left += arr[i];
-                if (sum_left >= avg && i > 0)
+                if (sum_left >= avg)
                 {
                     mid = i;
+                    if (sum_left == avg)
+                    {
+                        mid += 1;
+                        sum_left += arr[mid];
+                    }
                     break;
                 }
             }
@@ -461,7 +466,7 @@ namespace CodeLearn
 
         private static void Main(string[] args)
         {
-            int[] arr = new int[] { 0, 0, 0, 0, 0 };
+            int[] arr = new int[] { 2, 2, 2, 2 };
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine(TimDiemTrungBinhFPT(arr));
             Console.ReadKey();
